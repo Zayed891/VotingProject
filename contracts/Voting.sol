@@ -133,7 +133,7 @@ contract Vote {
         nextCandidateId++;
     }
 
-    function result() external {
+    function result() public {
         require(
             msg.sender == electionCommission,
             "You are not from election commision"
@@ -191,6 +191,7 @@ contract Vote {
     }
 
     function emergency() public {
+        require(electionCommission==msg.sender,"You are not from election commission");
         stopVoting = true;
     }
 }

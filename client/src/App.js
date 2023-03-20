@@ -1,5 +1,5 @@
 import { Route, Link } from "react-router-dom";
-import Candidate from "./components/CandidateRegister";
+import CandidateRegister from "./components/CandidateRegister";
 import VoterRegister from "./components/VoterRegister";
 import Winner from "./components/Winner";
 import Vote from "./contracts/Vote.json";
@@ -16,7 +16,7 @@ function App() {
   });
   const [account, setAccount] = useState("Not connected");
 
-  useEffect(() => {
+  useEffect(() => { // template code used to make web3js application
     async function init() {
       const provider = new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545");
       const web3 = new Web3(provider);
@@ -30,7 +30,7 @@ function App() {
     }
     init();
   }, []);
-  useEffect(() => {
+  useEffect(() => { // scroll down menu-connected accounts
     const { web3 } = state;
     const allAccounts = async () => {
       var select = document.getElementById("selectNumber");
@@ -99,7 +99,7 @@ function App() {
       </form>
 
       <Route path="/candidate">
-        <Candidate state={state} account={account}></Candidate>
+        <CandidateRegister state={state} account={account}></CandidateRegister>
       </Route>
       <Route path="/voter">
         <VoterRegister state={state} account={account}></VoterRegister>
